@@ -132,10 +132,10 @@ public class GestionDeProductos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void QuitarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarPActionPerformed
-        fp.getjButton1().
+        /*fp.getjButton1()
         panelPrincipal.removeAll();
         panelPrincipal.add(quitarP);
-        panelPrincipal.setVisible(true);
+        panelPrincipal.setVisible(true);*/
     }//GEN-LAST:event_QuitarPActionPerformed
 
     private void AnadirEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnadirEActionPerformed
