@@ -21,9 +21,7 @@ public class FramePrincipal extends javax.swing.JFrame {
    public static Sistema sistema= new Sistema();
    
    
-    /**
-     * Creates new form FramePrincipal
-     */
+    //holaaaa :v
     public FramePrincipal() {
         initComponents();
     }
