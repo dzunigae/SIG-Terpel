@@ -5,7 +5,6 @@
  */
 package Frontera;
     
-import Frontera.FramePrincipal;
 /**
  *
  * @author 192545681742
@@ -17,8 +16,8 @@ public class GestionDeProductos extends javax.swing.JPanel {
     private AnadirExistencias anadirE = new AnadirExistencias();
     private QuitarExistencia quitarE = new QuitarExistencia();
     private EditarProducto editarP= new EditarProducto();
-    private ConsultarIni consultarP= new ConsultarIni();
-    private FramePrincipal fp = new FramePrincipal();
+    private consulta2 consID= new consulta2();
+    private consulta1 consCAT= new consulta1();
     
     /**
      * Creates new form GestionDeProductos
@@ -36,13 +35,31 @@ public class GestionDeProductos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        AnadirE = new javax.swing.JButton();
+        QuitarE = new javax.swing.JButton();
         AnadirP = new javax.swing.JButton();
         QuitarP = new javax.swing.JButton();
         EditarP = new javax.swing.JButton();
-        AnadirE = new javax.swing.JButton();
-        QuitarE = new javax.swing.JButton();
-        ConsultarP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        ConsulID = new javax.swing.JButton();
+        ConsulCAT = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(153, 255, 153));
+
+        AnadirE.setText("Añadir Existencias");
+        AnadirE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnadirEActionPerformed(evt);
+            }
+        });
+
+        QuitarE.setText("Quitar Existencias");
+        QuitarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitarEActionPerformed(evt);
+            }
+        });
 
         AnadirP.setText("Añadir Producto");
         AnadirP.addActionListener(new java.awt.event.ActionListener() {
@@ -65,107 +82,132 @@ public class GestionDeProductos extends javax.swing.JPanel {
             }
         });
 
-        AnadirE.setText("Añadir Existencias");
-        AnadirE.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Trajan Pro", 0, 14)); // NOI18N
+        jLabel1.setText("    GESTION DE PRODUCTOS");
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        ConsulID.setText("Consulta-ID");
+        ConsulID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AnadirEActionPerformed(evt);
+                ConsulIDActionPerformed(evt);
             }
         });
 
-        QuitarE.setText("Quitar Existencias");
-        QuitarE.addActionListener(new java.awt.event.ActionListener() {
+        ConsulCAT.setText("Consulta- Categoría");
+        ConsulCAT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuitarEActionPerformed(evt);
+                ConsulCATActionPerformed(evt);
             }
         });
-
-        ConsultarP.setText("Consultar Producto");
-        ConsultarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultarPActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("    Gestión de productos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AnadirE, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(QuitarE, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ConsultarP, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(AnadirP, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(QuitarP, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditarP, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ConsulCAT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ConsulID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EditarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AnadirE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AnadirP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(QuitarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(QuitarE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AnadirP)
-                    .addComponent(QuitarP)
-                    .addComponent(EditarP))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AnadirE)
-                    .addComponent(QuitarE)
-                    .addComponent(ConsultarP))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(AnadirP)
+                        .addGap(18, 18, 18)
+                        .addComponent(AnadirE)
+                        .addGap(18, 18, 18)
+                        .addComponent(QuitarP)
+                        .addGap(18, 18, 18)
+                        .addComponent(QuitarE)
+                        .addGap(18, 18, 18)
+                        .addComponent(EditarP)
+                        .addGap(18, 18, 18)
+                        .addComponent(ConsulID)
+                        .addGap(18, 18, 18)
+                        .addComponent(ConsulCAT)
+                        .addGap(0, 75, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void QuitarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarPActionPerformed
-        /*fp.getjButton1()
-        panelPrincipal.removeAll();
-        panelPrincipal.add(quitarP);
-        panelPrincipal.setVisible(true);*/
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(quitarP);
+        jPanel1.setVisible(true);
     }//GEN-LAST:event_QuitarPActionPerformed
 
     private void AnadirEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnadirEActionPerformed
-        // TODO add your handling code here:
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(anadirE);
+        jPanel1.setVisible(true);
     }//GEN-LAST:event_AnadirEActionPerformed
 
     private void AnadirPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnadirPActionPerformed
-        // TODO add your handling code here:
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(anadirP);
+        jPanel1.setVisible(true);
     }//GEN-LAST:event_AnadirPActionPerformed
 
     private void EditarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPActionPerformed
-        // TODO add your handling code here:
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(editarP);
+        jPanel1.setVisible(true);
     }//GEN-LAST:event_EditarPActionPerformed
 
     private void QuitarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarEActionPerformed
-        // TODO add your handling code here:
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(quitarE);
+        jPanel1.setVisible(true);
     }//GEN-LAST:event_QuitarEActionPerformed
 
-    private void ConsultarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConsultarPActionPerformed
+    private void ConsulIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsulIDActionPerformed
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(consID);
+        jPanel1.setVisible(true);
+    }//GEN-LAST:event_ConsulIDActionPerformed
+
+    private void ConsulCATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsulCATActionPerformed
+        jPanel1.setVisible(false);
+        jPanel1.removeAll();
+        jPanel1.add(consCAT);
+        jPanel1.setVisible(true);
+    }//GEN-LAST:event_ConsulCATActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AnadirE;
     private javax.swing.JButton AnadirP;
-    private javax.swing.JButton ConsultarP;
+    private javax.swing.JButton ConsulCAT;
+    private javax.swing.JButton ConsulID;
     private javax.swing.JButton EditarP;
     private javax.swing.JButton QuitarE;
     private javax.swing.JButton QuitarP;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

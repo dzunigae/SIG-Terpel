@@ -5,6 +5,9 @@
  */
 package Frontera;
 
+import Control.Verificaciones;
+import Entidad.Producto;
+
 /**
  *
  * @author 192545681742
@@ -35,7 +38,9 @@ public class EditarProducto extends javax.swing.JPanel {
         precioProductoEditado = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         editarProducto = new javax.swing.JButton();
-        volver3 = new javax.swing.JButton();
+        resultado = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel1.setText("Identificación Producto");
 
@@ -43,11 +48,17 @@ public class EditarProducto extends javax.swing.JPanel {
 
         jLabel3.setText("Precio Nuevo");
 
+        jLabel4.setFont(new java.awt.Font("Trajan Pro", 0, 14)); // NOI18N
         jLabel4.setText("EDITAR PRODUCTO");
 
         editarProducto.setText("Guardar");
+        editarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarProductoActionPerformed(evt);
+            }
+        });
 
-        volver3.setText("Volver");
+        resultado.setFont(new java.awt.Font("Traditional Arabic", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -56,26 +67,25 @@ public class EditarProducto extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(idProductoEditado)
-                                .addComponent(nombreProductoEditado)
-                                .addComponent(precioProductoEditado, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(editarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(volver3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(idProductoEditado)
+                                    .addComponent(nombreProductoEditado)
+                                    .addComponent(precioProductoEditado, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                    .addComponent(editarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,13 +104,48 @@ public class EditarProducto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(precioProductoEditado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(editarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(volver3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(editarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void editarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProductoActionPerformed
+        Verificaciones ver= new Verificaciones();
+        String text= idProductoEditado.getText();
+        String text2= precioProductoEditado.getText();
+        if(ver.isNumeric(text)){
+            if(ver.VerificarExistenciaID(Integer.parseInt(text))){
+                if(ver.isNumeric(text2)){
+                    int a=Integer.parseInt(text2);
+                    if(a>=0){
+                        
+                        Producto productoanterior= new Producto();
+                        productoanterior.setId(Integer.parseInt(text));
+                        ver.dao.actualizarEDIT(productoanterior,nombreProductoEditado.getText() ,a);
+                        resultado.setText("Producto actualizado");
+                    }
+                    else{
+                        resultado.setText("El precio no puede ser negativo");
+                    }
+                    
+                }
+                else{
+                    resultado.setText("La cantidad ingresada no es un numero");
+                }
+               
+                
+            }
+            else{
+                resultado.setText("No existe producto con esa ID");
+            }
+        }
+        else{
+            resultado.setText("El codigo ingresado no es un numero");
+        }
+    }//GEN-LAST:event_editarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -112,6 +157,6 @@ public class EditarProducto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nombreProductoEditado;
     private javax.swing.JTextField precioProductoEditado;
-    private javax.swing.JButton volver3;
+    private javax.swing.JLabel resultado;
     // End of variables declaration//GEN-END:variables
 }
