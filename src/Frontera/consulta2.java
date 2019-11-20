@@ -96,22 +96,24 @@ public class consulta2 extends javax.swing.JPanel {
         try{
             Verificaciones ver= new Verificaciones();
             String text= consultarId1.getText();
-            if(ver.isNumeric(text)){
-                if(ver.VerificarExistenciaID(Integer.parseInt(text))){
-                    Producto p= new Producto();
-                    p.setId(Integer.parseInt(text));
-                    Producto producto=ver.dao.leerID(p);
-                    resultado.setText("Nombre: " + producto.getNombre() +" Cantidad: " + producto.getCantidad() +" Valor unitario: "+ producto.getValor() + " Categoría: " + producto.getCategoria());
-                }
-                else{
-                    resultado.setText("No existe producto con esa ID");
-                }
-            }
-            else{
-                resultado.setText("El codigo ingresado no es un numero");
+            
+             if(text.length()==0){
+                resultado.setText("Es necesaria una ID válida para ésta operación");
+            }else if(!ver.isNumeric(text)){
+                resultado.setText("La ID debe ser un número");
+            }else if(20<text.length()){
+                resultado.setText("La ID no puede superar los 20 dígitos");
+            }else if(!ver.VerificarExistenciaID(Integer.parseInt(text))){
+                resultado.setText("No existe ningún producto registrado con ésta ID");
+            }else{
+                Producto p= new Producto();
+                p.setId(Integer.parseInt(text));
+                Producto producto=ver.dao.leerID(p);
+                resultado.setText("Nombre: " + producto.getNombre() +" Cantidad: " + producto.getCantidad() +" Valor unitario: "+ producto.getValor() + " Categoría: " + producto.getCategoria());
+                
             }
         }catch(javax.persistence.NoResultException e){
-                        System.out.print("hijueputaaaaaa xd");
+            
                     }
     }//GEN-LAST:event_consultaP2ActionPerformed
 

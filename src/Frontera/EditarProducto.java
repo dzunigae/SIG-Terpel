@@ -116,35 +116,61 @@ public class EditarProducto extends javax.swing.JPanel {
         Verificaciones ver= new Verificaciones();
         String text= idProductoEditado.getText();
         String text2= precioProductoEditado.getText();
-        if(ver.isNumeric(text)){
-            if(ver.VerificarExistenciaID(Integer.parseInt(text))){
-                if(ver.isNumeric(text2)){
-                    int a=Integer.parseInt(text2);
-                    if(a>=0){
-                        
-                        Producto productoanterior= new Producto();
-                        productoanterior.setId(Integer.parseInt(text));
-                        ver.dao.actualizarEDIT(productoanterior,nombreProductoEditado.getText() ,a);
-                        resultado.setText("Producto actualizado");
-                    }
-                    else{
-                        resultado.setText("El precio no puede ser negativo");
-                    }
-                    
+        String text3= nombreProductoEditado.getText();
+        
+        if(text.length()==0){
+            resultado.setText("Es necesaria una ID válida para ésta operación");
+        }else if(!ver.isNumeric(text)){
+            resultado.setText("La ID debe ser un número");
+        }else if(20<text.length()){
+            resultado.setText("La ID no puede superar los 20 dígitos");
+        }else if(!ver.VerificarExistenciaID(Integer.parseInt(text))){
+            resultado.setText("No existe ningún producto registrado con ésta ID");
+        }else{
+            if(text2.length()==0 && text3.length()!=0){
+                if(50<text3.length()){
+                    resultado.setText("El nombre del producto no puede superar los 50 caracteres");
+                }else{
+                    Producto productoconlaID= new Producto();
+                    productoconlaID.setId(Integer.parseInt(text));
+                    Producto productoanterior = ver.dao.leerID(productoconlaID);
+                    ver.dao.actualizarEDIT(productoanterior,text3,productoanterior.getValor());
+                    resultado.setText("Producto actualizado");
                 }
-                else{
-                    resultado.setText("La cantidad ingresada no es un numero");
+            }else if(text2.length()!=0 && text3.length()==0){
+                if(!ver.isNumeric(text2)){
+                    resultado.setText("Ingrese un número como precio");
+                }else if(20<text2.length()){
+                    resultado.setText("El número de dígitos no puede ser mayor que 20");
+                }else if(Integer.parseInt(text2)<0){
+                    resultado.setText("El precio no puede ser negativo");
+                }else{
+                    Producto productoconlaID= new Producto();
+                    productoconlaID.setId(Integer.parseInt(text));
+                    Producto productoanterior = ver.dao.leerID(productoconlaID);
+                    ver.dao.actualizarEDIT(productoanterior,productoanterior.getNombre(),Integer.parseInt(text2));
+                    resultado.setText("Producto actualizado");
                 }
-               
-                
+            }else if(text2.length()!=0 && text3.length()!=0){
+                if(50<text3.length()){
+                    resultado.setText("El nombre del producto no puede superar los 50 caracteres");
+                }else if(!ver.isNumeric(text2)){
+                    resultado.setText("Ingrese un número como precio");
+                }else if(20<text2.length()){
+                    resultado.setText("El número de dígitos no puede ser mayor que 20");
+                }else if(Integer.parseInt(text2)<0){
+                    resultado.setText("El precio no puede ser negativo");
+                }else{
+                    Producto productoconlaID= new Producto();
+                    productoconlaID.setId(Integer.parseInt(text));
+                    Producto productoanterior = ver.dao.leerID(productoconlaID);
+                    ver.dao.actualizarEDIT(productoanterior,text3,Integer.parseInt(text2));
+                    resultado.setText("Producto actualizado");
+                }
+            }else{
+                resultado.setText("No se ha cambiado ningún elemento");
             }
-            else{
-                resultado.setText("No existe producto con esa ID");
-            }
-        }
-        else{
-            resultado.setText("El codigo ingresado no es un numero");
-        }
+        }                 
     }//GEN-LAST:event_editarProductoActionPerformed
 
 

@@ -132,26 +132,53 @@ public class AnadirProducto extends javax.swing.JPanel {
     private void AnadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnadirProductoActionPerformed
         Producto producto= new Producto();
         producto.setNombre(nombreProductoAnadido.getText());
-        int valor;
-        Verificaciones ver= new Verificaciones();
-        String texto1 = cantidadProductoAnadido.getText();
-        String texto2= precioProductoAnadido.getText();
-        if(!ver.isNumeric(texto1)){
-            resultado.setText("Ingrese un numero como cantidad");
-        }
-        else if (!ver.isNumeric(texto2)){
-            resultado.setText("Ingrese un numero como precio");
+        if(producto.getNombre().length()==0){
+            resultado.setText("Todo producto debe tener un nombre");
+        }else{
+            if(producto.getNombre().length()<51){
+                int valor;
+                Verificaciones ver= new Verificaciones();
+                String texto1 = cantidadProductoAnadido.getText();
+                String texto2= precioProductoAnadido.getText();
+                if(texto2.length()!=0){
+                    if(texto1.length()!=0){
+                        if(!ver.isNumeric(texto1)){
+                            resultado.setText("Ingrese un numero como cantidad inicial");
+                        }
+                        else if (!ver.isNumeric(texto2)){
+                            resultado.setText("Ingrese un numero como precio");
+                        }
+                        else if(20<texto2.length()){
+                            resultado.setText("El número de digitos no debe ser mayor a 20");
+                        }
+                        else if(20<texto1.length()){
+                            resultado.setText("El número de digitos no debe ser mayor a 20");
+                        }
+                        else if(texto2.length()<0){
+                            resultado.setText("El precio no puede ser negativo");
+                        }
+                        else if(texto1.length()<0){
+                            resultado.setText("La cantidad inicial de productos no puede ser negativa");
+                        }
+                        else if(texto1.length()==0){
+                            resultado.setText("La cantidad inicial de productos no puede ser cero");
+                        }
+                        else{
+                            producto.setCantidad(Integer.parseInt(texto1));
+                            producto.setValor(Integer.parseInt(texto2));
+                            producto.setCategoria((String)categoriaProductoAnadido.getSelectedItem());
+                            resultado.setText(ver.AddProductoNuevo(producto));
+                        }
+                    }else{
+                        resultado.setText("Todo producto debe tener una cantidad inicial de unidades");
+                    }
+                }else{
+                    resultado.setText("Todo producto debe tener un precio");
                 }
-        else{
-            producto.setCantidad(Integer.parseInt(texto1));
-            producto.setValor(Integer.parseInt(texto2));
-            producto.setCategoria((String)categoriaProductoAnadido.getSelectedItem());
-            //System.out.println(producto.getNombre() + producto.getCantidad() + producto.getValor() + producto.getCategoria());
-        
-        
-            resultado.setText(ver.AddProductoNuevo(producto));
+            }else{
+                resultado.setText("El nombre del producto no puede superar los 50 caracteres");
+            }
         }
-        
           
     }//GEN-LAST:event_AnadirProductoActionPerformed
 

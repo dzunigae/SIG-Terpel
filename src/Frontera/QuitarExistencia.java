@@ -107,36 +107,37 @@ public class QuitarExistencia extends javax.swing.JPanel {
         Verificaciones ver= new Verificaciones();
         String text= idExistenciaEliminada.getText();
         String text2= cantidadEliminada.getText();
-        if(ver.isNumeric(text)){
-            if(ver.VerificarExistenciaID(Integer.parseInt(text))){
-                if(ver.isNumeric(text2)){
-                    //int a= FramePrincipal.sistema.getProductos().get(Integer.parseInt(text)).getCantidad();
-                    Producto producto= new Producto();
+        
+        if(text.length()==0){
+            resultado.setText("Es necesaria una ID válida para ésta operación");
+        }else if(!ver.isNumeric(text)){
+            resultado.setText("La ID debe ser un número");
+        }else if(20<text.length()){
+            resultado.setText("La ID no puede superar los 20 dígitos");
+        }else if(!ver.VerificarExistenciaID(Integer.parseInt(text))){
+            resultado.setText("No existe ningún producto registrado con ésta ID");
+        }else{
+            if(text2.length()==0){
+                resultado.setText("No se ha agregado ninguna cantidad");
+            }else if(!ver.isNumeric(text2)){
+                resultado.setText("Ingrese un número como cantidad nueva");
+            }else if(20<text2.length()){
+                resultado.setText("El número de digitos no puede ser mayor a 20");
+            }else if(Integer.parseInt(text2)<0){
+                resultado.setText("La cantidad nueva de productos no puede ser negativa");
+            }else{
+                Producto producto= new Producto();
                     producto.setId(Integer.parseInt(text));
                     int a= ver.dao.leerID(producto).getCantidad();
                     if(a>=Integer.parseInt(text2)){
-                        //FramePrincipal.sistema.getProductos().get(Integer.parseInt(text)).setCantidad(a-Integer.parseInt(text2));
                         int b=a-Integer.parseInt(text2);
                         ver.dao.actualizarCANT(producto, b);
                         resultado.setText("Existencias eliminadas");
                     }
                     else{
                         resultado.setText("No hay suficientes existencias para ser eliminadas");
-                    }
-                    
-                }
-                else{
-                    resultado.setText("La cantidad ingresada no es un numero");
-                }
-               
-                
+                    } 
             }
-            else{
-                resultado.setText("No existe producto con esa ID");
-            }
-        }
-        else{
-            resultado.setText("El codigo ingresado no es un numero");
         }
     }//GEN-LAST:event_quitarExistenciaActionPerformed
 

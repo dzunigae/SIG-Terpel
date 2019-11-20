@@ -95,21 +95,29 @@ public class QuitarProducto extends javax.swing.JPanel {
     private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
         Verificaciones ver= new Verificaciones();
         String text= idProductoQuitado.getText();
-        if(ver.isNumeric(text)){
-            if(ver.VerificarExistenciaID(Integer.parseInt(text))){
-                
-                //FramePrincipal.sistema.getProductos().remove(Integer.parseInt(text));
-                Producto p= new Producto();
-                p.setId(Integer.parseInt(text));
-                ver.dao.eliminar(p);
-                resultado.setText("Producto Eliminado");
+        if(text.length()!=0){
+            if(ver.isNumeric(text)){
+                if(text.length()<20){
+                    if(ver.VerificarExistenciaID(Integer.parseInt(text))){
+                        Producto p= new Producto();
+                        p.setId(Integer.parseInt(text));
+                        ver.dao.eliminar(p);
+                        resultado.setText("Producto Eliminado con éxito");
+                    }
+                    else{
+                        resultado.setText("No existe ningún producto registrado con ésta ID");
+                    }
+                }
+                else{
+                    resultado.setText("La ID no puede superar los 20 dígitos");
+                }
             }
             else{
-                resultado.setText("No existe producto con esa ID");
+                resultado.setText("La ID debe ser un número");
             }
         }
         else{
-            resultado.setText("El codigo ingresado no es un numero");
+            resultado.setText("Es necesaria una ID válida para ésta operación");
         }
     }//GEN-LAST:event_eliminarProductoActionPerformed
 
