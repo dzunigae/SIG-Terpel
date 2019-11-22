@@ -93,6 +93,8 @@ public class ProductoDAO {
             return producto;
         }
     }
+    
+    
     public List <Producto> leerCAT(Producto p){
         EntityManager em=emf.createEntityManager();
         List <Producto> producto= null;
@@ -109,6 +111,7 @@ public class ProductoDAO {
             return producto;
         }
     }
+    
     public boolean actualizarEDIT(Producto object, String nombrenuevo, int valor){
         EntityManager em=emf.createEntityManager();
         em.getTransaction().begin();

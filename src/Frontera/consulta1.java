@@ -56,6 +56,11 @@ public class consulta1 extends javax.swing.JPanel {
         jLabel2.setText("Categoría");
 
         consultaCategoria1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Combustible", "Refrigerantes", "Aceites", "Lubricantes" }));
+        consultaCategoria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaCategoria1ActionPerformed(evt);
+            }
+        });
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,24 +113,19 @@ public class consulta1 extends javax.swing.JPanel {
     private void consultarP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarP1ActionPerformed
         Verificaciones ver= new Verificaciones();
         model.setRowCount(0);
-        //Sistema sistema= FramePrincipal.sistema;
         String a=(String)consultaCategoria1.getSelectedItem();
-        //for(int b=0; b<sistema.getProductos().size();b++ ){
-        //    if(sistema.getProductos().get(b).getCategoria()==a){
-        //System.out.println(a);
         Producto x= new Producto();
         x.setCategoria(a);
         List <Producto> lista= ver.dao.leerCAT(x);
-        //
         for(Producto b: lista){
              model.insertRow(model.getRowCount(), new Object[]{b.getId(),b.getNombre(),b.getValor(),b.getCantidad()});
         }
         
-               
-        //    }
-        //}
-        
     }//GEN-LAST:event_consultarP1ActionPerformed
+
+    private void consultaCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaCategoria1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultaCategoria1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
