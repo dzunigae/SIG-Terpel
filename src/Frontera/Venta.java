@@ -286,6 +286,8 @@ public class Venta extends javax.swing.JPanel {
                 resultado_anadir.setText("El número de digitos no puede ser mayor a 20");
             }else if(Integer.parseInt(text2)<0){
                 resultado_anadir.setText("La cantidad de productos no puede ser negativa");
+            }else if(Integer.parseInt(text2)==0){
+                resultado_anadir.setText("La cantidad de productos no puede ser 0");
             }else{
                     int a=Integer.parseInt(ID.getText());
                     int b=Integer.parseInt(cantidad.getText());
@@ -323,7 +325,7 @@ public class Venta extends javax.swing.JPanel {
                 int n = recibo.getValor_de_la_venta();
                 recibo.setValor_de_la_venta(n + c.getCantidad()*a.getValor());
                 ver.dao.actualizarCANT(a, b);
-                resultado.setText("Existencias eliminadas");
+                resultado.setText("Venta exitosa");
             }
             recibo.setEmpleado("Carlitos Way");
             recibox.setText(String.valueOf(recibo.getValor_de_la_venta()));
